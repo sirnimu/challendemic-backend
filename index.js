@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 const { MONGODB } =  require('./config.js');
 
-const PORT = 4000;
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 
