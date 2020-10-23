@@ -1,22 +1,27 @@
 import express from 'express';
-import routes from './src/routes/routes'
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 const { MONGODB } =  require('./config.js');
+import routes from './src/routes/routes';
 
 const PORT = process.env.PORT || 3000;
+const DB = process.env.MONGODB || MONGODB;
 
 const app = express();
 
 // Database
-mongoose.connect( process.env.MONGODB || MONGODB, { useUnifiedTopology: true,  useNewUrlParser: true});
+mongoose.connect(DB, { useUnifiedTopology: true,  useNewUrlParser: true});
 
 // Middleware to populate the req.body property with the parsed body 
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
 
+// Routes
+app.get('/', (req, res) => {
+    res.send('This is the base page for the challendemic API');
+});
+
 routes(app);
 
- app.listen(PORT, ()=>{
-     console.log(`Server is running on: http://localhost:${PORT}`);
- });
+// Start server
+app.listen(PORT);
