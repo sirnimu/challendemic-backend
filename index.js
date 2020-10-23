@@ -11,7 +11,10 @@ const DB = process.env.MONGODB || MONGODB;
 const app = express();
 
 // Database
-mongoose.connect(DB, { useUnifiedTopology: true,  useNewUrlParser: true});
+mongoose.connect(DB, { useUnifiedTopology: true,  useNewUrlParser: true})
+    .catch(err => {
+        console.error(err);
+    });
 
 mongoose.connection.on('connected', () => {
 	console.log('Established Mongoose Default Connection');
