@@ -13,6 +13,14 @@ const app = express();
 // Database
 mongoose.connect(DB, { useUnifiedTopology: true,  useNewUrlParser: true});
 
+mongoose.connection.on('connected', () => {
+	console.log('Established Mongoose Default Connection');
+});
+
+mongoose.connection.on('error', err => {
+	console.log('Mongoose Default Connection Error : ' + err);
+});
+
 // Middleware to populate the req.body property with the parsed body 
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
