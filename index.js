@@ -1,8 +1,9 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
-const { MONGODB } =  require('./config.js');
 import routes from './src/routes/routes';
+const { MONGODB } =  require('./config.js');
+require('dotenv').config();
 
 const PORT = process.env.PORT || 3000;
 const DB = process.env.MONGODB || MONGODB;
