@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 
 // Database
-mongoose.connect(MONGODB, { useUnifiedTopology: true,  useNewUrlParser: true});
+mongoose.connect( process.env.MONGODB || MONGODB, { useUnifiedTopology: true,  useNewUrlParser: true});
 
 // Middleware to populate the req.body property with the parsed body 
 app.use(bodyParser.urlencoded({extended : true}));
